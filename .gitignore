@@ -1,0 +1,12 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/UwpConsoleApp/.vs/UwpConsoleApp
+/.vs/UwpProjects/v17
+/packages/Microsoft.Windows.CppWinRT.2.0.220531.1/bin
+/packages/Microsoft.Windows.CppWinRT.2.0.220531.1/build/native
+/packages/Microsoft.Windows.CppWinRT.2.0.220531.1
+/UwpConsoleApp/Generated Files/winrt
+/UwpConsoleApp/x64/Debug
+/x64/Debug/UwpConsoleApp
