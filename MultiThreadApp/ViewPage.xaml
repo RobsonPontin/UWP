@@ -9,8 +9,21 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
         <TextBlock Text="This is a new view page"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"/>
+
+        <Button x:Name="btnOpenImage" 
+                Content="Open Image"
+                Click="btnOpenImage_Click"/>
+
+        <Image x:Name="img"
+               Grid.Row="1"/>
+
     </Grid>
 </Page>
