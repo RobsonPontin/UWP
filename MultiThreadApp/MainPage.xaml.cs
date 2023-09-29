@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -36,15 +37,17 @@ namespace MultiThreadApp
             Frame rootFrame = null;
 
             var view = CoreApplication.CreateNewView();
-            await view.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => 
+            await view.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, (Windows.UI.Core.DispatchedHandler)(() => 
             {
                 appWindow = ApplicationView.GetForCurrentView();
+                appWindow.Consolidated += AppWindow_Consolidated;
                 ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(400, 300));
 
                 rootFrame = new Frame();
+                Window.Current.Closed += Current_Closed;
                 Window.Current.Content = rootFrame;
                 Window.Current.Activate();
-            });
+            }));
 
             await ApplicationViewSwitcher.TryShowAsStandaloneAsync(
                 appWindow.Id,
@@ -58,6 +61,21 @@ namespace MultiThreadApp
             {
                 rootFrame.Navigate(typeof(ViewPage));
             });
+        }
+
+        private void AppWindow_Consolidated(ApplicationView sender, ApplicationViewConsolidatedEventArgs args)
+        {
+            var window = Window.Current;
+            if (window != null)
+            {
+                window.Dispatcher.StopProcessEvents();
+                window.Close();
+            }
+        }
+
+        private void Current_Closed(object sender, Windows.UI.Core.CoreWindowEventArgs e)
+        {
+            // After shutting down window ASTA thread is still in the background waiting.
         }
     }
 }
