@@ -10,3 +10,5 @@
 /UwpConsoleApp/Generated Files/winrt
 /UwpConsoleApp/x64/Debug
 /x64/Debug/UwpConsoleApp
+/MultiThreadApp/bin/x64/Debug
+/MultiThreadApp/obj
