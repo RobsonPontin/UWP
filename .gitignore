@@ -12,3 +12,5 @@
 /x64/Debug/UwpConsoleApp
 /MultiThreadApp/bin/x64/Debug
 /MultiThreadApp/obj
+/CoreApp/.vs/CoreApp
+/CoreApp/packages/Microsoft.Windows.CppWinRT.2.0.220531.1
